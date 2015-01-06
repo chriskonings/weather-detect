@@ -1,0 +1,21 @@
+extends layout
+
+block content
+	p What Should You Wear In...
+
+	form(method='post', action='/search')
+		span Location: 
+		input(type='text' name="myDestination")
+		br
+		input(type='submit')
+
+	h2= title
+
+	p Today In 
+		span= messagecontent
+		span  it is 
+		span= currentWeather
+		p You should be wearing:
+		p= iconHere
+
+
