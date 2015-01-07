@@ -1,14 +1,15 @@
 Beginnings of weather app...
-
+<br>
 Working:
-Forecast Detection
-Google Location Grab
+<br>Forecast Detection
+<br>Google Location Grab
 
 
 To Do:
+<br>
 Automatic Longitude Latitude Grab Using Geolocation (HTML5?)
-
+<br>
 Uses:
-Express
-forecast.io
-google-geocoding
+<br>Express
+<br>forecast.io
+<br>google-geocoding
