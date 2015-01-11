@@ -4,6 +4,8 @@ var router = express.Router();
 var google_geocoding = require('google-geocoding');
 
 
+
+
 // Require the module
 var Forecast = require('forecast');
 
@@ -23,7 +25,6 @@ var forecast = new Forecast({
 /* GET home page. */
 router.get('/', function(req, res) {
 
-
 	google_geocoding.geocode('London, UK', function(err, location) {
 
 	    if( err ) {
@@ -37,16 +38,8 @@ router.get('/', function(req, res) {
 
 		forecast.get([location.lat, location.lng], function(err, weather) {
 		if(err) return console.dir(err);
+		var img = "/images/" + weather.currently.icon + ".jpg";		
 		res.render('index', {messagecontent: weather.timezone, currentWeather: weather.currently.summary, title: 'Wear For The Weather'});
-			
-			if (weather.currently.icon == 'partly-cloudy-night'){
-				router.render('index', { iconHere :"raincoat" });
-				console.log('raincoat');
-			} else if (weather.currently.icon == 'clear-day'){
-				console.log('sunglasses');
-			};
-
-
 		});
 
 	});
@@ -66,20 +59,37 @@ router.post('/search', function(req, res) {
 
 
 		forecast.get([location.lat, location.lng], function(err, weather) {
-		if(err) return console.dir(err);
-		res.render('index', { messagecontent: weather.timezone, currentWeather: weather.currently.summary, title: weather.timezone});
-			
+			if(err) return console.dir(err);	
+			var img = "/images/" + weather.currently.icon + ".jpg";		
+
 			if (weather.currently.icon == 'partly-cloudy-night'){
-				console.log("coat");
+				console.log("partly-cloudy-night");
 			} else if (weather.currently.icon == 'clear-day'){
-				console.log("sunglasses");
+				console.log("clear-day");
+			} else if (weather.currently.icon == 'clear-night'){
+				console.log("clear-night");
+			} else if (weather.currently.icon == 'rain'){
+				console.log("rain");
+			} else if (weather.currently.icon == 'snow'){
+				console.log("snow");
+			} else if (weather.currently.icon == 'sleet'){
+				console.log("sleet");
+			} else if (weather.currently.icon == 'wind'){
+				console.log("wind");
+			} else if (weather.currently.icon == 'cloudy'){
+				console.log("cloudy");
+			} else if (weather.currently.icon == 'partly-cloudy-day'){
+				console.log("partly-cloudy-day");
+			} else if (weather.currently.icon == 'fog'){
+				console.log("fog");
 			};
+
+			res.render('index', {messagecontent: weather.timezone, currentWeather: weather.currently.summary, title: 'Wear For The Weather', image : img});
 		});
 
 	});
 
 });
-
 
 
 

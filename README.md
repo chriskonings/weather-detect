@@ -3,6 +3,7 @@ Beginnings of weather app...
 Working:
 <br>Forecast Detection
 <br>Google Location Grab
+<br>Picture change
 
 
 To Do:
